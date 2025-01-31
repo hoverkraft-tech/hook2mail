@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hook2mail
+  labels:
+    kubernetes.io/instance: hook2mail
+    kubernetes.io/name: hook2mail
+data:
+  EMAIL_FROM:
+  EMAIL_TO:
+  SMTP_HOST:
+  SMTP_PORT:
+  USE_STARTTLS:
+  USE_LOGIN:
+  SMTP_USER:
+  SMTP_PASSWORD:

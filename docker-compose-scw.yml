@@ -1,0 +1,15 @@
+services:
+
+  mailrelay:
+    build: .
+    environment:
+      - EMAIL_FROM
+      - EMAIL_TO
+      - SMTP_HOST
+      - SMTP_PORT
+      - USE_STARTTLS
+      - USE_LOGIN
+      - SMTP_USER
+      - SMTP_PASSWORD
+    ports:
+      - 8000:8000

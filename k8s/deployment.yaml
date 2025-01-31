@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hook2mail
+  labels:
+    kubernetes.io/instance: hook2mail
+    kubernetes.io/name: hook2mail
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      kubernetes.io/instance: hook2mail
+      kubernetes.io/name: hook2mail
+  template:
+    metadata:
+      labels:
+        kubernetes.io/instance: hook2mail
+        kubernetes.io/name: hook2mail
+    spec:
+      containers:
+      - name: hook2mail
+        image: ttl.sh/1448083d-7c59-420d-a88b-20cf5ee1f982:3h@sha256:cbace5fce5d44630f03e3ea1d85c08d3e0f3880bb3a8c1b4d40ff29c3e29b13f
+        envFrom:
+          - configMapRef:
+              name: hook2mail
+              optional: false
+        ports:
+          - name: http
+            protocol: TCP
+            containerPort: 8000

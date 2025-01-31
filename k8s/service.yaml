@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  hook2mail
+spec:
+  selector:
+    kubernetes.io/instance: hook2mail
+    kubernetes.io/name: hook2mail
+  type:  ClusterIP
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 8000
