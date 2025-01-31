@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: hook2mail
-        image: ttl.sh/1448083d-7c59-420d-a88b-20cf5ee1f982:3h@sha256:cbace5fce5d44630f03e3ea1d85c08d3e0f3880bb3a8c1b4d40ff29c3e29b13f
+        image: webofmars/hook2mail:0.1.0
         envFrom:
           - configMapRef:
               name: hook2mail
