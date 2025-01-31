@@ -25,10 +25,22 @@ def webhook():
         message_base64 = data.get('message', '')
         raw_message = base64.b64decode(message_base64).decode('utf-8')
         email_message = Parser().parsestr(raw_message)
-        message_content = email_message.get_payload(decode=True).decode('utf-8')
-        print("message content: %s" % message_content)
+
+        if email_message.is_multipart():
+            for part in email_message.walk():
+                if part.get_content_type() == "text/plain":
+                    payload = part.get_payload(decode=True)
+                    break
+        else:
+            payload = email_message.get_payload(decode=True)
+
+        if payload is None:
+            raise ValueError("The email body is missing or not decodable")
+
+        message_content = payload.decode('utf-8')
         if len(message_content) < 10:
             raise ValueError("The email body must have at least 10 characters")
+
         send_email(message_content)
         return "OK", 200
     except (KeyError, ValueError, base64.binascii.Error) as e:
