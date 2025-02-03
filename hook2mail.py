@@ -26,6 +26,9 @@ def webhook():
         raw_message = base64.b64decode(message_base64).decode('utf-8')
         email_message = Parser().parsestr(raw_message)
 
+        # Extract the original sender
+        original_sender = email_message.get('From', 'Unknown Sender')
+
         if email_message.is_multipart():
             for part in email_message.walk():
                 if part.get_content_type() == "text/plain":
@@ -41,17 +44,17 @@ def webhook():
         if len(message_content) < 10:
             raise ValueError("The email body must have at least 10 characters")
 
-        send_email(message_content)
+        send_email(message_content, original_sender)
         return "OK", 200
     except (KeyError, ValueError, base64.binascii.Error) as e:
         return jsonify({"error": str(e)}), 400
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-def send_email(content):
+def send_email(content, original_sender):
     msg = EmailMessage()
     msg.set_content(content)
-    msg["Subject"] = "Forwarded e-mail"
+    msg["Subject"] = f"Forwarded email from {original_sender}"
     msg["From"] = EMAIL_FROM
     msg["To"] = EMAIL_TO
 
