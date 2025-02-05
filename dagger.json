@@ -1,0 +1,6 @@
+{
+  "name": "hook_2_mail",
+  "engineVersion": "v0.15.3",
+  "sdk": "python",
+  "source": ".dagger"
+}

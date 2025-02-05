@@ -1,0 +1,5 @@
+{
+  "python.createEnvironment.trigger": "off",
+  "python.terminal.activateEnvironment": false,
+  "#python.analysis.extraPaths": ["~/.pyenv/versions/3.13.0/envs/hook2mail"]
+}
