@@ -33,12 +33,12 @@ jobs:
             --repository="meetup-devops-aix-marseille/hook2mail"
             --username=${{ github.actor }}
             --password=env:OCI_REGISTRY_PASSWORD
-            --tag=latest
+            --tag=${{ env.IMAGE_TAG }}
             --platforms='linux/arm64,linux/amd64'
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
           OCI_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-
+          IMAGE_TAG: "pr-${{ github.event.number }}-${{ github.sha }}"
   tests:
     name: tests
     runs-on: ubuntu-latest
