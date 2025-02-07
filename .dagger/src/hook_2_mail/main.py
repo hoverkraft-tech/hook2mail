@@ -9,13 +9,12 @@ IGNORE_LIST = [
     ".dagger",
     ".dockerignore",
     ".envrc",
-    ".git",
-    ".gitignore",
+    ".git*",
     ".llms",
     ".venv",
     ".vscode",
     "docker-compose*",
-    "Dockerfile"
+    "Dockerfile",
     "k8s",
 ]
 
@@ -168,12 +167,12 @@ class Hook2Mail:
         """build-env : build container image"""
 
 
-        pip_cache = dag.cache_volume("pip")
+        cache = dag.cache_volume("pycache")
         built = (
             dag.container(platform=platform)
                 .from_("python:3.13-slim")
                 .with_directory("/app", source)
-                .with_mounted_cache("/root/.cache/pip", pip_cache)
+                .with_mounted_cache("/root/.cache", cache)
                 .with_env_variable("PYTHONUNBUFFERED", "1")
                 .with_env_variable("POETRY_NO_INTERACTION", "1")
                 .with_env_variable("POETRY_VIRTUALENVS_IN_PROJECT", "1")

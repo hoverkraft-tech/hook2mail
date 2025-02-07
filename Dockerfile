@@ -1,8 +1,11 @@
 # Use the official Python image from the Docker Hub
-FROM python:3.9-slim
+FROM python:3.13-slim
 
 # Set environment variables
-ENV PYTHONUNBUFFERED=1
+ENV PYTHONUNBUFFERED="1"
+ENV POETRY_NO_INTERACTION="1"
+ENV POETRY_VIRTUALENVS_IN_PROJECT="1"
+ENV POETRY_VIRTUALENVS_CREATE="1"
 ENV PORT="8000"
 ENV SMTP_HOST="localhost"
 ENV SMTP_PORT="25"
@@ -13,17 +16,18 @@ ENV SMTP_PASSWORD=""
 ENV EMAIL_FROM="no-reply@example.com"
 ENV EMAIL_TO="no-reply@example.com"
 
-# Set the working directory
 WORKDIR /app
 
-# Copy the requirements file
-COPY requirements.txt .
+# hadolint ignore=DL3013,DL3042
+RUN --mount=type=cache,target=/root/.cache/pip \
+  pip install --upgrade poetry
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+COPY pyproject.toml /app/
+COPY poetry.lock /app/
+RUN --mount=type=cache,target=/root/.cache/pypoetry \
+  poetry install --no-root
 
-# Copy the rest of the application code
-COPY . .
+COPY . /app/
 
-# Define the command to run the application
-CMD ["python", "hook2mail.py"]
+USER 1000
+ENTRYPOINT ["poetry", "run", "python", "hook2mail.py"]
