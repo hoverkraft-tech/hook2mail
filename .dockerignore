@@ -1,6 +1,10 @@
-/.venv
-/k8s
-/.envrc
-/.gitignore
-/docker-compose*
-**/.git
+.dagger
+.dockerignore
+.envrc
+.git*
+.llms
+.venv
+.vscode
+docker-compose*
+Dockerfile
+k8s
