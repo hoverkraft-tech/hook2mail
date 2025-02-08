@@ -1,44 +1,18 @@
-name: Pull Request
-on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+name: Main - Continuous Integration
 
-permissions:
-  contents: read
-  packages: write
+on:
+  push:
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-jobs:
+permissions:
+  contents: read
 
-  build:
-    name: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Dagger -> build
-        uses: dagger/dagger-for-github@v7
-        with:
-          version: "v0.15.3"
-          verb: call
-          # FIXME: this is a workaround for https://github.com/dagger/dagger-for-github/issues/117
-          args: >-
-            build --source=.
-            --registry=ghcr.io
-            --repository="meetup-devops-aix-marseille/hook2mail"
-            --username=${{ github.actor }}
-            --password=env:OCI_REGISTRY_PASSWORD
-            --tag=${{ env.IMAGE_TAG }}
-            --platforms='linux/arm64,linux/amd64'
-          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
-        env:
-          OCI_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-          IMAGE_TAG: "pr-${{ github.event.number }}-${{ github.sha }}"
+jobs:
 
   tests:
     name: tests
@@ -74,3 +48,31 @@ jobs:
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
           OCI_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    needs: ["tests"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Dagger -> build
+        uses: dagger/dagger-for-github@v7
+        with:
+          version: "v0.15.3"
+          verb: call
+          # FIXME: this is a workaround for https://github.com/dagger/dagger-for-github/issues/117
+          args: >-
+            build --source=.
+            --registry=ghcr.io
+            --repository="meetup-devops-aix-marseille/hook2mail"
+            --username=${{ github.actor }}
+            --password=env:OCI_REGISTRY_PASSWORD
+            --tag=${{ env.IMAGE_TAG }}
+            --platforms='linux/arm64,linux/amd64'
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+        env:
+          OCI_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          IMAGE_TAG: "latest"

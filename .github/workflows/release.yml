@@ -1,0 +1,104 @@
+name: 🚀 Release
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  check-branches:
+    name: Check branches
+    runs-on: self-hosted
+    steps:
+      - name: Check branch
+        run: |
+          if [[ "${{ github.ref_name }}" != "${{ github.event.repository.default_branch }}" ]]; then
+            echo "This action can only be run on the ${{ github.event.repository.default_branch }} branch"
+            exit 1
+          fi
+
+  update_release_draft:
+    name: Draft a new release
+    # we want to publish a new tag only if ci succeeds
+    needs: check-branches
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: self-hosted
+    outputs:
+      latestRelease: ${{ steps.update_release_draft.outputs.tag_name }}
+    steps:
+      # create a new release
+      - id: update_release_draft
+        uses: release-drafter/release-drafter@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          publish: true
+          disable-autolabeler: true
+
+  tests:
+    name: tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Dagger -> test-405
+        uses: dagger/dagger-for-github@v7
+        with:
+          version: "v0.15.3"
+          verb: call
+          # FIXME: this is a workaround for https://github.com/dagger/dagger-for-github/issues/117
+          args: >-
+            test-405
+            --source=.
+            --platform='linux/amd64'
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+        env:
+          OCI_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+      - name: Dagger -> test-200
+        uses: dagger/dagger-for-github@v7
+        with:
+          version: "v0.15.3"
+          verb: call
+          # FIXME: this is a workaround for https://github.com/dagger/dagger-for-github/issues/117
+          args: >-
+            test-200
+            --source=.
+            --platform='linux/amd64'
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+        env:
+          OCI_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    needs: ["update_release_draft", "tests"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Dagger -> build
+        uses: dagger/dagger-for-github@v7
+        with:
+          version: "v0.15.3"
+          verb: call
+          # FIXME: this is a workaround for https://github.com/dagger/dagger-for-github/issues/117
+          args: >-
+            build --source=.
+            --registry=ghcr.io
+            --repository="meetup-devops-aix-marseille/hook2mail"
+            --username=${{ github.actor }}
+            --password=env:OCI_REGISTRY_PASSWORD
+            --tag=${{ env.IMAGE_TAG }}
+            --platforms='linux/arm64,linux/amd64'
+          cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
+        env:
+          OCI_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          IMAGE_TAG: "pr-${{ needs.update_release_draft.outputs.latestRelease }}"
