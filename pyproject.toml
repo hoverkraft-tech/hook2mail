@@ -1,8 +1,3 @@
-/pyproject.toml is missing the following sections:
-  * tool.poetry.name
-  * tool.poetry.version
-  * tool.poetry.description
-  * tool.poetry.authors
 [project]
 name = "hook2mail"
 version = "0.1.0"
@@ -24,17 +19,5 @@ in-project = true
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.poetry]
-name = "hook2mail"
-version = "0.1.0"
-description = "a simple hook to resend emails"
-authors = [
-    {name = "Frederic Leger",email = "frederic@webofmars.com"}
-]
-license = {text = "GPL-3"}
-readme = "README.md"
-requires-python = ">=3.13,<4.0"
-
 [tool.poetry.group.dev.dependencies]
 dagger-io = "^0.15.3"
-uuid = "^1.30"
