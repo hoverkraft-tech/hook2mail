@@ -20,41 +20,59 @@ categories:
       - 'bugfix'
       - 'bug'
   - title: '🧰 Maintenance'
-    label: 'chore'
+    labels:
+      - 'chore'
   - title: '📚 Documentation'
-    label: 'docs'
+    labels:
+      - 'docs'
   - title: '🧪 Tests'
-    label: 'test'
+    labels:
+      - 'test'
   - title: '🏷️ Version Tags'
-    label: 'version'
+    labels:
+      - 'version'
   - title: '🔖 Release Tags'
-    label: 'release'
+    labels:
+      - 'release'
   - title: '🧩 Dependencies'
-    label: 'dependencies'
+    labels:
+      - 'dependencies'
   - title: '🔒 Security'
-    label: 'security'
+    labels:
+      - 'security'
   - title: '🚨 Breaking Changes'
-    label: 'breaking'
+    labels:
+      - 'breaking'
   - title: '🧹 Code Cleanup'
-    label: 'cleanup'
+    labels:
+      - 'cleanup'
   - title: '🔧 Config'
-    label: 'config'
+    labels:
+      - 'config'
   - title: '📦 Packages'
-    label: 'package'
+    labels:
+      - 'package'
   - title: '🔥 Removals'
-    label: 'removal'
+    labels:
+      - 'removal'
   - title: '🚧 Work In Progress'
-    label: 'wip'
+    labels:
+      - 'wip'
   - title: '🔀 Merges'
-    label: 'merge'
+    labels:
+      - 'merge'
   - title: '🎨 Style'
-    label: 'style'
+    labels:
+      - 'style'
   - title: '🔊 Logging'
-    label: 'logging'
+    labels:
+      - 'logging'
   - title: '🔇 Silence'
-    label: 'silence'
+    labels:
+      - 'silence'
   - title: '🤖 CI/CD'
-    label: 'ci'
+    labels:
+      - 'ci'
 
 version-resolver:
   major:
