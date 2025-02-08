@@ -15,7 +15,7 @@ jobs:
 
   check-branches:
     name: Check branches
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Check branch
         run: |
@@ -31,7 +31,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     outputs:
       latestRelease: ${{ steps.update_release_draft.outputs.tag_name }}
     steps:
