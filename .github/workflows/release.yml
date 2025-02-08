@@ -105,4 +105,4 @@ jobs:
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
           OCI_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
-          IMAGE_TAG: "pr-${{ needs.update_release_draft.outputs.latestRelease }}"
+          IMAGE_TAG: "${{ needs.update_release_draft.outputs.latestRelease }}"
