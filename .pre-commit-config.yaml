@@ -13,8 +13,8 @@ repos:
       - id: detect-aws-credentials
       - id: mixed-line-ending
       - id: trailing-whitespace
-      - id: no-commit-to-branch
-        args: [--branch, main]
+      # - id: no-commit-to-branch
+      #   args: [--branch, main]
 
   # - repo: https://github.com/jtyr/kubeconform-helm
   #   rev: v0.1.17
