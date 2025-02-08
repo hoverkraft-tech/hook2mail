@@ -24,26 +24,6 @@ jobs:
             exit 1
           fi
 
-  update_release_draft:
-    name: Draft a new release
-    # we want to publish a new tag only if ci succeeds
-    needs: check-branches
-    permissions:
-      contents: write
-      pull-requests: write
-    runs-on: ubuntu-latest
-    outputs:
-      latestRelease: ${{ steps.update_release_draft.outputs.tag_name }}
-    steps:
-      # create a new release
-      - id: update_release_draft
-        uses: release-drafter/release-drafter@v6
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          publish: true
-          disable-autolabeler: true
-
   tests:
     name: tests
     runs-on: ubuntu-latest
@@ -78,6 +58,25 @@ jobs:
           cloud-token: ${{ secrets.DAGGER_CLOUD_TOKEN }}
         env:
           OCI_REGISTRY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
+
+  update_release_draft:
+    name: Draft a new release
+    needs: [check-branches, tests]
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    outputs:
+      latestRelease: ${{ steps.update_release_draft.outputs.tag_name }}
+    steps:
+      - id: update_release_draft
+        uses: release-drafter/release-drafter@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          publish: true
+          disable-autolabeler: true
 
   build:
     name: build
