@@ -2,6 +2,7 @@
   "recommendations": [
     "github.vscode-github-actions",
     "ms-python.python",
-    "dagger.dagger"
+    "dagger.dagger",
+    "tim-koehler.helm-intellisense"
   ]
 }
