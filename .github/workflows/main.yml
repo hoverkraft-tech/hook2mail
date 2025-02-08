@@ -68,7 +68,7 @@ jobs:
           args: >-
             build --source=.
             --registry=ghcr.io
-            --repository="meetup-devops-aix-marseille/hook2mail"
+            --repository="hoverkraft-tech/hook2mail"
             --username=${{ github.actor }}
             --password=env:OCI_REGISTRY_PASSWORD
             --tag=${{ env.IMAGE_TAG }}

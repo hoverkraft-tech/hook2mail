@@ -3,8 +3,6 @@ services:
   mailrelay:
     build: .
     environment:
-      - EMAIL_FROM=meetups@cloudnative.aixmarseille.tech
-      - EMAIL_TO=contact@webofmars.com, another@example.com, third@example.com
       - PORT=8000
       - SMTP_HOST=mailhog
       - SMTP_PORT=1025

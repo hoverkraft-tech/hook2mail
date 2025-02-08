@@ -5,8 +5,8 @@ from email.parser import Parser
 import os
 import base64
 
-EMAIL_FROM = os.getenv("EMAIL_FROM", "meetups@cloudnative.aixmarseille.tech")
-EMAIL_TO = os.getenv("EMAIL_TO", "contact@webofmars.com, another@example.com, third@example.com")
+EMAIL_FROM = os.getenv("EMAIL_FROM", "me@example.com")
+EMAIL_TO = os.getenv("EMAIL_TO", "you@example.com")
 PORT = int(os.getenv("PORT", 8000))
 
 SMTP_HOST = os.getenv("SMTP_HOST", "localhost")
