@@ -5,8 +5,8 @@ from email.parser import Parser
 import os
 import base64
 
-EMAIL_FROM = os.getenv("EMAIL_FROM", "me@example.com")
-EMAIL_TO = os.getenv("EMAIL_TO", "you@example.com")
+EMAIL_FROM = os.getenv("EMAIL_FROM", "meetups@cloudnative.aixmarseille.tech")
+EMAIL_TO = os.getenv("EMAIL_TO", "contact@webofmars.com, another@example.com, third@example.com")
 PORT = int(os.getenv("PORT", 8000))
 
 SMTP_HOST = os.getenv("SMTP_HOST", "localhost")
@@ -29,6 +29,7 @@ def webhook():
         # Extract the original sender
         original_sender = email_message.get('From', 'Unknown Sender')
 
+        payload = None
         if email_message.is_multipart():
             for part in email_message.walk():
                 if part.get_content_type() == "text/plain":

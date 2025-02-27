@@ -1,0 +1,140 @@
+X-Postal-Spam: no
+X-Postal-Spam-Threshold: 5.0
+X-Postal-Spam-Score: 0
+X-Postal-Threat: no
+Received: from mail-io1-f46.google.com (100.64.1.143 [100.64.1.143]) by mail.cloudnative.aixmarseille.tech with SMTP; Sun, 09 Feb 2025 11:36:07 -0000
+Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-8552a15462bso4249839f.0
+        for <meetups@cloudnative.aixmarseille.tech>; Sun, 09 Feb 2025 03:36:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=webofmars-com.20230601.gappssmtp.com; s=20230601; t=1739100965; x=1739705765; darn=cloudnative.aixmarseille.tech;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WOoWPHiTIditrKX3B7DE3ZqWCaB0dnSeYLkoNvnzlmg=;
+        b=ibOPHXfTfQexRVDtk5CDAXirOslks4pzKFFAX1pSbHCg4zHG7UrqMpTUaoA+SbWMEu
+         BqrxDG6JYH5wGE4z8nkR7bCBvwLSra7XmPZLwrH4f2l15kvANZolaWjUDN+PvhNEmUpz
+         qI9HcJ/EzkyYxKB9Ljn4hMgq4MgV3leyqhlT5eJFPkyhhcAzaHZLREbRJyM2IWwVBATH
+         M525c8k6/b38tM5k/kwxbo1Hoeissn7G8U10yV5B5lYx34oppjZtA32driuMu6bm3jKm
+         scg0K9PUXJdwGitYUVv3oeTrNFvPO5GnUO9YmX6P2P8r0d7B42fxK4Mo4yJJfVSQs37k
+         H+Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739100965; x=1739705765;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WOoWPHiTIditrKX3B7DE3ZqWCaB0dnSeYLkoNvnzlmg=;
+        b=BPbs1iP6/rhrSqplS9A3WY2oerJPhIb7uAoqD0HewFtzPv0UEzlzwlueviWi+5Q2KE
+         emzaZXFlTnbhXvAssBlISknLmojjRiPX9VK8562iK4TzwfsHuk7+I/cXT9W5UIxwnfLh
+         qk3TBhIK5dv+0sEjLP/DsQjyp8jgnqG/1XWVXKzxpM/IuMGb8nJsYQr2Xt2tHgKVgHQx
+         PoUkxXujTlDNdYYxIW6DTJi1XRPVRozaZmfg/NtxotZSSzGZT4zTzUVhuLeKxGUIynlI
+         TXBaqIB42XLdcbC+l86SszZbc3dFt9zVE4Zy0uQbJsh9WrGrZnevN8GCKhS1XKLTVqzc
+         YJEQ==
+X-Gm-Message-State: AOJu0Yz0pVzla1Wgam8ePdyQEIgQXvteVGdy+tSN2Pnc1MVQgFL66Z1w
+	wtodaIXCEPXdkoqjdhOIdv2ockzbKZu6pR34qoGO1dM3nYT9Jw3ruf8vxjTtu0TXwkC58PLQI+U
+	sR/WpNrBDn5ijpv1ovj7SQkOFh8AnAK2sT81ZDhUkm4PzLGwQ
+X-Gm-Gg: ASbGncvWPqgUD5/LzKrWTiMKGQajEZCOIvkwb3P0yatZt6o1yJBGxzQHZYNne69BNn4
+	y0mU8XLp5FS95Ufm7W5MYiSIbN9hvwxslgx/caprBXBYgB7gOkmkeG+Xt+v2Cl0tCa5zaqcNJHx
+	s/5fJ038YREufgRQ3aUZx1Okqhk+Z6
+X-Google-Smtp-Source: AGHT+IEmzprdE3To5Sns/1KDAVx/oxI7+GyxwIbS/gObWRTjWzc+y7LqLwTVok0n/SYVAG8P2MZoxCGSs6yJfQB2mb4=
+X-Received: by 2002:a05:6602:4085:b0:841:95b5:8953 with SMTP id
+ ca18e2360f4ac-854fd907876mr1041280139f.14.1739100965122; Sun, 09 Feb 2025
+ 03:36:05 -0800 (PST)
+MIME-Version: 1.0
+From: Frederic Leger <contact@webofmars.com>
+Date: Sun, 9 Feb 2025 12:35:54 +0100
+X-Gm-Features: AWEUYZnWCtsErbnvUbi3IRN6EfM8Yw-OWKEwXtPRkpE03s6jvqmXKLh7-mtfgbo
+Message-ID: <CADo29dkutdwPLWoyHba4SKXAWtmA_M60GGzqy1o7V6rq6dFBog@mail.gmail.com>
+Subject: =?UTF-8?Q?=5Btest=5D_avec_l=27exp=C3=A9diteur_d=27origine?=
+To: meetups cloudnative <meetups@cloudnative.aixmarseille.tech>
+Content-Type: multipart/alternative; boundary="00000000000041538e062db3ff1d"
+
+--00000000000041538e062db3ff1d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+normalement on doit avoir l'exp=C3=A9diteur maintenant
+
+
+--=20
+[image: webofmars | build-and-run]
+Frederic Leger
+
+fondateur | webofmars | build-and-run
+M:  06.52.77.53.54
+E:  contact@webofmars.com
+webofmars.com
+<https://twitter.com/webofmars>
+<https://www.linkedin.com/company/webofmars/> <https://github.com/webofmars=
+>
+<https://www.youtube.com/channel/UCi77lDIsszaryN0flTS9EOw>
+<https://www.build-and-run.fr/>
+P.S. During business hours, focus is my work philosophy. So to fully serve
+my customers, I do not consult emails during the day. Please send me an SMS
+if anything urgent otherwise my reply might take a few workdays
+
+--00000000000041538e062db3ff1d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div class=3D"gmail_default" style=3D"font-family:ari=
+al,sans-serif;font-size:small">normalement on doit avoir l&#39;exp=C3=A9dit=
+eur maintenant</div><br clear=3D"all"></div><div><div dir=3D"ltr" class=3D"=
+gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><=
+div dir=3D"ltr"><br></div><div dir=3D"ltr">--=C2=A0<br><table cellspacing=
+=3D"0" width=3D"470" cellpadding=3D"0" border=3D"0" style=3D"border-spacing=
+:0px;border-collapse:collapse;color:rgb(97,97,97);font-family:Lato,sans-ser=
+if;font-size:13px"><tbody><tr><td valign=3D"top" width=3D"100" style=3D"pad=
+ding:0px 12px 0px 0px;vertical-align:top"><img alt=3D"webofmars | build-and=
+-run" width=3D"100" src=3D"https://img.mysignature.io/p/5/3/9/539db537-73c6=
+-599a-be4b-573f8fe3bfe6.png?time=3D1572995421" style=3D"width:100px;border-=
+radius:0%"></td><td valign=3D"top" style=3D"font-size:1em;padding:0px 0px 0=
+px 12px;vertical-align:top;border-left:1px solid rgb(96,147,209)"><table ce=
+llspacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"border-spacing:0px;=
+border-collapse:collapse;line-height:1.4;font-family:&quot;Lucida Console&q=
+uot;,Monaco,monospace;font-size:10.4px;color:rgb(0,0,1)"><tbody><tr><td sty=
+le=3D"padding-bottom:8px"><span style=3D"font-weight:600;font-stretch:norma=
+l;font-size:1.3em;line-height:normal;font-family:&quot;Lucida Console&quot;=
+,Monaco,monospace;color:rgb(96,147,209)">Frederic Leger</span></td></tr><tr=
+><td style=3D"padding-bottom:8px"><div style=3D"font-family:&quot;Lucida Co=
+nsole&quot;,Monaco,monospace">fondateur | webofmars | build-and-run</div></=
+td></tr><tr><td><div style=3D"font-family:&quot;Lucida Console&quot;,Monaco=
+,monospace"><span style=3D"font-weight:600;color:rgb(96,147,209)">M:=C2=A0<=
+/span>=C2=A0<a href=3D"tel:06.52.77.53.54" style=3D"color:rgb(0,0,1)" targe=
+t=3D"_blank">06.52.77.53.54</a></div></td></tr><tr><td><div style=3D"font-f=
+amily:&quot;Lucida Console&quot;,Monaco,monospace"><span style=3D"font-weig=
+ht:600;font-size:1em;color:rgb(96,147,209)">E:=C2=A0</span>=C2=A0<a href=3D=
+"mailto:contact@webofmars.com" style=3D"color:rgb(0,0,1)" target=3D"_blank"=
+>contact@webofmars.com</a></div></td></tr><tr><td style=3D"padding:8px 0px =
+0px"><div style=3D"font-family:&quot;Lucida Console&quot;,Monaco,monospace"=
+><a href=3D"https://webofmars.com/" style=3D"color:rgb(96,147,209)" target=
+=3D"_blank">webofmars.com</a></div></td></tr><tr><td style=3D"padding-top:1=
+2px"><table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"borde=
+r-spacing:0px;border-collapse:collapse"><tbody><tr><td style=3D"font-family=
+:Arial;padding:0px 5px 0px 0px"><a href=3D"https://twitter.com/webofmars" s=
+tyle=3D"color:rgb(0,0,0)" target=3D"_blank"><img alt=3D"" width=3D"22" src=
+=3D"https://img.mysignature.io/s/v3/f/2/7/f27ad15e-5bd5-594a-b437-4397eae77=
+ba1.png" style=3D"width:22px"></a></td><td style=3D"font-family:Arial;paddi=
+ng:0px 5px 0px 0px"><a href=3D"https://www.linkedin.com/company/webofmars/"=
+ style=3D"color:rgb(0,0,0)" target=3D"_blank"><img alt=3D"" width=3D"22" sr=
+c=3D"https://img.mysignature.io/s/v3/3/6/9/3694419a-fd67-54ff-ac24-d867d331=
+b2d2.png" style=3D"width:22px"></a></td><td style=3D"font-family:Arial;padd=
+ing:0px 5px 0px 0px"><a href=3D"https://github.com/webofmars" style=3D"colo=
+r:rgb(0,0,0)" target=3D"_blank"><img alt=3D"" width=3D"22" src=3D"https://i=
+mg.mysignature.io/s/v3/3/c/5/3c55446e-bd75-5b5e-8356-317f20f4c036.png" styl=
+e=3D"width:22px"></a></td><td style=3D"font-family:Arial;padding:0px 5px 0p=
+x 0px"><a href=3D"https://www.youtube.com/channel/UCi77lDIsszaryN0flTS9EOw"=
+ style=3D"color:rgb(0,0,0)" target=3D"_blank"><img alt=3D"" width=3D"22" sr=
+c=3D"https://img.mysignature.io/s/v3/3/7/b/37b91546-fabf-55b3-a4a8-c5ff71e8=
+4816.png" style=3D"width:22px"></a></td><td style=3D"font-family:Arial;padd=
+ing:0px 5px 0px 0px"><a href=3D"https://www.build-and-run.fr/" style=3D"col=
+or:rgb(0,0,0)" target=3D"_blank"><img alt=3D"" width=3D"22" src=3D"https://=
+img.mysignature.io/s/v3/c/a/e/cae832f8-a016-5f59-b838-6f17366ea684.png" sty=
+le=3D"width:22px"></a></td></tr></tbody></table></td></tr></tbody></table><=
+/td></tr></tbody></table><table cellspacing=3D"0" cellpadding=3D"0" border=
+=3D"0" style=3D"border-spacing:0px;border-collapse:collapse;font-size:1em;c=
+olor:gray;font-family:Arial;line-height:1.3;width:500px"><tbody><tr><td sty=
+le=3D"font-size:9.75px;padding-top:15px">P.S. During business hours, focus =
+is my work philosophy. So to fully serve my customers, I do not consult ema=
+ils during the day. Please send me an SMS if anything urgent otherwise my r=
+eply might take a few workdays</td></tr></tbody></table><br></div></div></d=
+iv></div></div></div>
+
+--00000000000041538e062db3ff1d--
