@@ -28,6 +28,7 @@ def webhook():
 
         # Extract the original sender
         original_sender = email_message.get('From', 'Unknown Sender')
+        original_subject = email_message.get('Subject', 'No Subject')
 
         payload = None
         if email_message.is_multipart():
@@ -45,19 +46,21 @@ def webhook():
         if len(message_content) < 10:
             raise ValueError("The email body must have at least 10 characters")
 
-        send_email(message_content, original_sender)
+        send_email(message_content, original_sender, original_subject)
         return "OK", 200
     except (KeyError, ValueError, base64.binascii.Error) as e:
         return jsonify({"error": str(e)}), 400
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-def send_email(content, original_sender):
+def send_email(content, original_sender, original_subject):
     msg = EmailMessage()
-    msg.set_content(content)
-    msg["Subject"] = f"Forwarded email from {original_sender}"
+    forward_infos = f"\n\nNote: this message has been forwarded via hook2mail from {original_sender}"
+    msg.set_content(content + forward_infos)
+    msg["Subject"] = original_subject
     msg["From"] = EMAIL_FROM
     msg["To"] = EMAIL_TO
+    msg.add_header('Reply-To', f"{original_sender}, {EMAIL_FROM}")
 
     with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
         if USE_STARTTLS:
