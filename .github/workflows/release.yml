@@ -35,7 +35,7 @@ jobs:
       - name: Dagger -> test-405
         uses: dagger/dagger-for-github@v7
         with:
-          version: "v0.15.3"
+          version: "v0.18.9"
           verb: call
           # FIXME: this is a workaround for https://github.com/dagger/dagger-for-github/issues/117
           args: >-
@@ -48,7 +48,7 @@ jobs:
       - name: Dagger -> test-200
         uses: dagger/dagger-for-github@v7
         with:
-          version: "v0.15.3"
+          version: "v0.18.9"
           verb: call
           # FIXME: this is a workaround for https://github.com/dagger/dagger-for-github/issues/117
           args: >-
@@ -90,7 +90,7 @@ jobs:
       - name: Dagger -> build
         uses: dagger/dagger-for-github@v7
         with:
-          version: "v0.15.3"
+          version: "v0.18.9"
           verb: call
           # FIXME: this is a workaround for https://github.com/dagger/dagger-for-github/issues/117
           args: >-
