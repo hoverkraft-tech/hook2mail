@@ -4,6 +4,14 @@ from email.message import EmailMessage
 from email.parser import Parser
 import os
 import base64
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 EMAIL_FROM = os.getenv("EMAIL_FROM", "meetups@cloudnative.aixmarseille.tech")
 EMAIL_TO = os.getenv("EMAIL_TO", "contact@webofmars.com, another@example.com, third@example.com")
@@ -44,17 +52,27 @@ def webhook():
             payload = email_message.get_payload(decode=True)
 
         if payload is None:
-            raise ValueError("The email body is missing or not decodable")
+            error_msg = "The email body is missing or not decodable"
+            logger.error(f"400 Bad Request - {error_msg} - Request from {request.remote_addr} - Content-Type: {request.content_type}")
+            raise ValueError(error_msg)
 
         message_content = payload.decode('utf-8')
         if len(message_content) < 10:
-            raise ValueError("The email body must have at least 10 characters")
+            error_msg = "The email body must have at least 10 characters"
+            logger.error(f"400 Bad Request - {error_msg} - Request from {request.remote_addr} - Body length: {len(message_content)}")
+            raise ValueError(error_msg)
 
         send_email(message_content, original_infos)
         return "OK", 200
     except (KeyError, ValueError, base64.binascii.Error) as e:
+        try:
+            data_info = f"Data keys: {list(request.json.keys())}" if request.json else "No JSON data"
+        except:
+            data_info = "Unable to parse request data"
+        logger.error(f"400 Bad Request - {type(e).__name__}: {str(e)} - Request from {request.remote_addr} - Content-Type: {request.content_type} - {data_info}")
         return jsonify({"error": str(e)}), 400
     except Exception as e:
+        logger.exception(f"500 Internal Server Error - {type(e).__name__}: {str(e)} - Request from {request.remote_addr}")
         return jsonify({"error": str(e)}), 500
 
 def format_forwarded_email_header(original_infos):
